@@ -2,11 +2,14 @@ import styles from "./UserList.module.css";
 import { useGetUsersQuery } from "../../store/api/usersApi";
 
 export const UserList = () => {
-  const { data } = useGetUsersQuery();
+  const { data, refetch } = useGetUsersQuery();
+  // const reload = () => {
+  //   forceUpdate();
+  // }
   console.log(data);
 
   return (
-    <div>
+    <div className={styles.container}>
       <p>User list!</p>
       <ul className={styles.ul}>
         { !data ? 'loading' : data.map((user) => {
@@ -14,6 +17,10 @@ export const UserList = () => {
           })
         }
       </ul>
-    </div>
+      <button
+        className={styles.submitButton}
+        onClick={() => refetch()}
+      >Ladda om</button>
+		</div>
   )
 }
