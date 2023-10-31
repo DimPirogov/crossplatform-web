@@ -4,6 +4,7 @@
   margin: 0;
   border:#2b3045 1px solid;
   border-radius: 0.2rem;
+  text-align: left;
 }
 
 .container {
@@ -22,7 +23,7 @@
 	margin-top: 0.5rem;
 	color: rgba(255,255,255,.9);
 	border: none;
-	font-size: 0.5rem;
+	font-size: 0.8rem;
 	font-weight: 600;
 	padding: 0.5rem 1.6rem;
 	border-radius: 2rem;
@@ -30,6 +31,22 @@
 	box-shadow: 0 0.1rem 0.4rem -0.2rem rgba(0,0,0,.8);
 	transition: all 0.2s ease-in-out;
 }
+
+.deleteButton {
+	background-color: #9e3838;
+	margin-top: 0.5rem;
+	color: rgba(255,255,255,.9);
+	border: none;
+	font-size: 0.7rem;
+	font-weight: 600;
+	padding: 0.1rem 0.5rem;
+	border-radius: 2rem;
+	font-family: verdana;
+	box-shadow: 0 0.1rem 0.4rem -0.2rem rgba(0,0,0,.8);
+	transition: all 0.2s ease-in-out;
+}
+
+
 
 /** ::hover pseudo element */
 .submitButton:hover {

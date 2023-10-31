@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { db } from '../../firebase-config';
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
     switch (method) {
@@ -12,6 +12,10 @@ const firebaseBaseQuery = async ({ baseUrl, url, method, body }) => {
         case 'POST':
             const docRef = await addDoc(collection(db, url), body);
             return { data: { id: docRef.id, ...body } };
+
+        case 'DELETE':
+            await deleteDoc(doc(db, url, body));
+            return { data: `Deleted id ${body}`};
 
         default:
             throw new Error(`Unhandled method ${method}`);
@@ -40,7 +44,19 @@ export const usersApi = createApi({
           body: '',
         }),
       }),
+      deleteUser: builder.mutation({
+        query: ( id ) => ({
+          baseUrl: '',
+            url: 'users',
+            method: 'DELETE',
+            body: id
+        })
+      })
     }),
 });
 
-export const { useCreateUserMutation, useGetUsersQuery } = usersApi;
+export const {
+              useCreateUserMutation,
+              useGetUsersQuery,
+              useDeleteUserMutation
+            } = usersApi;
